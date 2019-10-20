@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: circleci/classic:edge
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.25.0-rc2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: set up rust
+          command: |
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
+            rustup default nightly
+      - run:
+          name: docker-compose up && docker-compose build
+          command: |
+            set -x
+            docker-compose build
+            docker-compose up -d
+      - run:
+          name: docker-compose down
+          command: docker-compose down
