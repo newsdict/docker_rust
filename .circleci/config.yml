@@ -9,18 +9,21 @@ jobs:
       - run:
           name: Install Docker Compose
           command: |
+            set -x
             curl -L https://github.com/docker/compose/releases/download/1.25.0-rc2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
           name: set up rust
           command: |
+            set -x
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
             $HOME/.cargo/bin/rustup default nightly
       - run:
           name: docker-compose up && docker-compose build
           command: |
             set -x
+            $HOME/.cargo/bin/cargo build --release
             docker-compose build
             docker-compose up -d
       - run:
