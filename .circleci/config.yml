@@ -16,7 +16,7 @@ jobs:
           name: set up rust
           command: |
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
-            rustup default nightly
+            $HOME/.cargo/bin/rustup default nightly
       - run:
           name: docker-compose up && docker-compose build
           command: |
