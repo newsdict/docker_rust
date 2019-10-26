@@ -8,3 +8,14 @@ edition = "2018"
 
 [dependencies]
 rocket = "0.4.2"
+slack-hook = "0.8.0"
+dotenv = "0.15.0"
+dotenv_codegen = "0.15.0"
+serde = "1.0.101"
+serde_json = "1.0"
+serde_derive = "1.0"
+
+[dependencies.rocket_contrib]
+version = "0.4.2"
+default-features = false
+features = ["handlebars_templates", "tera_templates", "json"]
