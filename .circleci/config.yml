@@ -7,6 +7,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Set up env file
+          command: |
+            cp env-example .env
+      - run:
           name: Install Docker Compose
           command: |
             set -x
