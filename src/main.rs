@@ -43,6 +43,11 @@ fn images(path: PathBuf) -> Option<NamedFile> {
     NamedFile::open(Path::new("assets/images").join(path)).ok()
 }
 
+#[get("/robots.txt")]
+fn robots() -> Option<NamedFile> {
+    NamedFile::open(Path::new("assets/robots.txt")).ok()
+}
+
 #[post("/submit", data = "<message>")]
 fn submit(message: Json<Message>) -> String {
     let slack = Slack::new(dotenv!("SLACK_WEBHOOK")).unwrap();
@@ -64,7 +69,7 @@ fn submit(message: Json<Message>) -> String {
 
 fn main() {
     rocket::ignite()
-    .mount("/", routes![index, js, css, images, submit])
+    .mount("/", routes![index, js, css, images, submit, robots])
     .attach(Template::fairing())
     .launch();
 }
