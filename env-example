@@ -1,4 +1,4 @@
 NAMESPACE=docker_rust
-SLACK_WEBHOOK=<webhook url>
-SLACK_CHANNEL_NAME=<slack channel name>
-SLACK_USER_NAME=<slack user name>
+SLACK_WEBHOOK='<webhook url>'
+SLACK_CHANNEL_NAME='<slack channel name>'
+SLACK_USER_NAME='<slack user name>'
